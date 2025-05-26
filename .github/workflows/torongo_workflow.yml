@@ -1,0 +1,27 @@
+name: ReadTextFile
+
+on: [push]
+
+jobs:
+  read_file:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Read the hello.txt file content
+      - name: Read hello.txt file
+        id: read_file
+        run: |
+          # Read the contents of the hello.txt file
+          CONTENT=$(cat hello.txt)
+          # Print the contents to the log
+          echo "${CONTENT}"
+          # Optionally set the output to be used in other steps
+          echo "file_content=${CONTENT}" >> $GITHUB_OUTPUT
+
+      # Step 3: Print the output (if needed for verification)
+      - name: Output Content
+        run: echo "The content of hello.txt is: ${{ steps.read_file.outputs.file_content }}"
+        
