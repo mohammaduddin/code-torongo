@@ -1,10 +1,14 @@
-name: ReadTextFile
+name: Read Text File and Print Content
 
-on: [push]
+on:
+  push:
+    branches:
+      - main  # Specify the branch you want to monitor
 
 jobs:
   read_file:
     runs-on: ubuntu-latest
+    
     steps:
       # Step 1: Checkout the repository
       - name: Checkout code
